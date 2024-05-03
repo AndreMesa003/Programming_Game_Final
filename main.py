@@ -1,7 +1,6 @@
 import math
 import random
 
-import room
 from player import *
 from room import *
 
@@ -9,36 +8,45 @@ from room import *
 def main():
 
     game_loop = True
-    player = Player()
-    print(f"Your name is {player.name} !")
-    print("Instructions") # have to do this
+    player_name = input("What will your character's name be?: ")
+    print(f"Welcome {player_name}!")
+    print("Instructions")  # have to do this
 
-    current_room = Room0()
-    while game_loop == True:
-        act = input("What would you like to do?: ")
-        input_list = act.split()
-        if input_list[0].lower() == 'look':
-            print(current_room.description)
+    current_room = 0  # zero as in room zero
 
-        elif input_list[0].lower() == 'inventory':
-            print(player.inventory)
+    while game_loop:
+        player_action = input("What would you like to do?: ")
+        input_list = player_action.split()
+        player_command = input_list[0].lower()
+        if player_command == 'look':
+            print(get_room_description(current_room))
 
-        elif input_list[1].lower() == 'inspect'
+        elif player_command == 'inventory':
+            print(player_inventory())
 
-        elif input_list[0].lower() == 'help':
+        elif player_command == 'help':
+            print('Really bro? pay more attention next time.\nInstructions')
             # Write out game instructions/guidelines
 
-        elif input_list[0].lower() == 'get':
-            if input_list[1].lower() in current_room.items.lower():
-                player.inventory.append(input_list[1])
+        elif player_command == 'get':
+            if input_list[1].lower() in room_inventory_list[current_room]:  # Room items
+                add_item_to_inventory(input_list[1].lower(), current_room)  # Item names must be 1 word
+                print(f'You have acquired \"{input_list[1].lower()}\"!\nIt has been added to your inventory.')
 
-        elif input_list[0].lower() == 'go':
-            if input_list[1].lower() in ['north','south','east','west']:
-                if
+        elif player_command == 'use':
+            x = 'WORK ON THIS'
+            # Define the game ide and the items we will need
+
+        elif player_command == 'go':
+            if input_list[1].lower() == 'north':
+                current_room = room_travel(0, current_room)
+            elif input_list[1].lower() == 'south':
+                current_room = room_travel(1, current_room)
+            elif input_list[1].lower() == 'east':
+                current_room = room_travel(2, current_room)
+            elif input_list[1].lower() == 'west':
+                current_room = room_travel(3, current_room)
 
 
 if __name__ == '__main__':
     main()
-
-
-

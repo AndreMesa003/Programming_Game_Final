@@ -1,0 +1,5 @@
+
+
+To move between rooms:
+If input command == true
+    Room_Current = Room_selected
